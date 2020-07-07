@@ -35,7 +35,7 @@ namespace Temp
                 table.Property(x => x.IsLogOut).HasDefaultValue(0);
                 table.Property(x => x.LoginResult).HasMaxLength(100).HasDefaultValue("");
                 table.Property(x => x.CreateTime).HasDefaultValue("1970-01-01 00:00:00");
-                table.Property(x => x.UpdateTime).HasColumnType("timestamp").HasDefaultValue("CURRENT_TIMESTAMP");
+                //table.Property(x => x.UpdateTime).HasColumnType("timestamp").HasDefaultValue("CURRENT_TIMESTAMP");
             });
 
             #region 种子数据
