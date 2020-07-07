@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Temp.Data;
 
 namespace Temp.Controllers
 {
@@ -28,7 +29,8 @@ namespace Temp.Controllers
             logger.LogInformation(JsonConvert.SerializeObject(item));
             var list = await unitOfWork.GetRepository<Blog>().GetPagedListAsync(x => (x.Id > 0 && x.Title.Contains("1")));
             logger.LogInformation(JsonConvert.SerializeObject(list));
-
+            //unitOfWork.GetRepository<LoginToken>().ChangeTable("logintoken_202007");
+            //var res = await unitOfWork.GetRepository<LoginToken>().GetFirstOrDefaultAsync(predicate: x => x.KID==1);
             return list.Items;
         }
     }
