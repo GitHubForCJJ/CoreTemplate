@@ -40,6 +40,29 @@ namespace Temp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LoginToken_yyyymm",
+                columns: table => new
+                {
+                    KID = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CreateTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)),
+                    UpdateTime = table.Column<TimeSpan>(type: "timestamp", nullable: false),
+                    Token = table.Column<string>(maxLength: 70, nullable: false, defaultValue: ""),
+                    TokenExpiration = table.Column<string>(nullable: true),
+                    LoginUserId = table.Column<string>(maxLength: 60, nullable: false, defaultValue: ""),
+                    LoginUserAccount = table.Column<string>(maxLength: 100, nullable: false, defaultValue: ""),
+                    LoginUserType = table.Column<int>(nullable: false),
+                    IpAddr = table.Column<string>(maxLength: 100, nullable: false, defaultValue: ""),
+                    PlatForm = table.Column<int>(nullable: false, defaultValue: 0),
+                    IsLogOut = table.Column<int>(nullable: false, defaultValue: 0),
+                    LoginResult = table.Column<string>(maxLength: 100, nullable: false, defaultValue: "")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LoginToken_yyyymm", x => x.KID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -119,6 +142,9 @@ namespace Temp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "LoginToken_yyyymm");
 
             migrationBuilder.DropTable(
                 name: "Posts");

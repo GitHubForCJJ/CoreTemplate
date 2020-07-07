@@ -9,8 +9,8 @@ using Temp;
 namespace Temp.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20200707093031_token")]
-    partial class token
+    [Migration("20200707101346_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,31 +123,58 @@ namespace Temp.Migrations
                         .HasDefaultValue(new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
                     b.Property<string>("IpAddr")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100)
+                        .HasDefaultValue("");
 
                     b.Property<int>("IsLogOut")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("LoginResult")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100)
+                        .HasDefaultValue("");
 
                     b.Property<string>("LoginUserAccount")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100)
+                        .HasDefaultValue("");
 
                     b.Property<string>("LoginUserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(60) CHARACTER SET utf8mb4")
+                        .HasMaxLength(60)
+                        .HasDefaultValue("");
 
                     b.Property<int>("LoginUserType")
                         .HasColumnType("int");
 
                     b.Property<int>("PlatForm")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Token")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(70) CHARACTER SET utf8mb4")
+                        .HasMaxLength(70)
+                        .HasDefaultValue("");
 
                     b.Property<string>("TokenExpiration")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<TimeSpan>("UpdateTime")
+                        .HasColumnType("timestamp");
 
                     b.HasKey("KID");
 

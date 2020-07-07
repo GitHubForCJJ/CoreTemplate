@@ -27,15 +27,15 @@ namespace Temp
             {
                 table.HasKey(x => x.KID);
                 table.ToTable("LoginToken_yyyymm");
-                table.Property(x => x.LoginUserAccount).HasMaxLength(100).HasDefaultValue("");
-                table.Property(x => x.Token).HasMaxLength(70).HasDefaultValue("");
-                table.Property(x => x.LoginUserId).HasMaxLength(60).HasDefaultValue("");
-                table.Property(x => x.IpAddr).HasMaxLength(100).HasDefaultValue("");
-                table.Property(x => x.PlatForm).HasDefaultValue(0);
-                table.Property(x => x.IsLogOut).HasDefaultValue(0);
-                table.Property(x => x.LoginResult).HasMaxLength(100).HasDefaultValue("");
-                table.Property(x => x.CreateTime).HasDefaultValue("1970-01-01 00:00:00");
-                //table.Property(x => x.UpdateTime).HasColumnType("timestamp").HasDefaultValue("CURRENT_TIMESTAMP");
+                table.Property(x => x.LoginUserAccount).HasMaxLength(100).HasDefaultValue("").IsRequired();
+                table.Property(x => x.Token).HasMaxLength(70).HasDefaultValue("").IsRequired();
+                table.Property(x => x.LoginUserId).HasMaxLength(60).HasDefaultValue("").IsRequired();
+                table.Property(x => x.IpAddr).HasMaxLength(100).HasDefaultValue("").IsRequired();
+                table.Property(x => x.PlatForm).HasDefaultValue(0).IsRequired();
+                table.Property(x => x.IsLogOut).HasDefaultValue(0).IsRequired();
+                table.Property(x => x.LoginResult).HasMaxLength(100).HasDefaultValue("").IsRequired();
+                table.Property(x => x.CreateTime).HasDefaultValue("1970-01-01 00:00:00").IsRequired();
+                table.Property(x => x.UpdateTime).HasColumnType("timestamp").IsRequired();//默认就是CURRENT_TIMESTAMP值 不知道是不是mysql版本问题.HasDefaultValue("CURRENT_TIMESTAMP")
             });
 
             #region 种子数据
