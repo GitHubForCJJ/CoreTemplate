@@ -8,7 +8,7 @@ namespace Temp.Data
     {
         public int KID { get; set; }
         public DateTime CreateTime { get; set; }
-        public TimeSpan UpdateTime { get; set; }
+        //public DateTime UpdateTime { get; set; }
         /// <summary>
         /// token
         /// </summary>

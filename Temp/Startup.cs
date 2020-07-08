@@ -13,7 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using Temp.Data;
 using Temp.Filters;
+using Temp.Repository;
 using Temp.SetupExtensions;
 
 namespace Temp
@@ -33,7 +35,9 @@ namespace Temp
             services.AddSwaggerSetup();
             services.AddDbContext<BloggingContext>(opt => opt.UseMySql(Configuration.GetConnectionString("UserDbRead")))
             //.AddDbContext<BloggingContext>(opt => opt.UseInMemoryDatabase("UnitOfWork"))
-            .AddUnitOfWork<BloggingContext>();
+            .AddUnitOfWork<BloggingContext>()
+            .AddCustomRepository<Blog, BlogRepository>()
+            .AddCustomRepository<LoginToken, LoginTokenRepository>();
             //.AddCustomRepository<Blog, CustomBlogRepository>();
 
             services.AddControllers(o =>

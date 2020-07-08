@@ -35,7 +35,7 @@ namespace Temp
                 table.Property(x => x.IsLogOut).HasDefaultValue(0).IsRequired();
                 table.Property(x => x.LoginResult).HasMaxLength(100).HasDefaultValue("").IsRequired();
                 table.Property(x => x.CreateTime).HasDefaultValue("1970-01-01 00:00:00").IsRequired();
-                table.Property(x => x.UpdateTime).HasColumnType("timestamp").IsRequired();//默认就是CURRENT_TIMESTAMP值 不知道是不是mysql版本问题.HasDefaultValue("CURRENT_TIMESTAMP")
+                //table.Property(x => x.UpdateTime).HasColumnType("timestamp").IsRequired();//默认就是CURRENT_TIMESTAMP值 不知道是不是mysql版本问题.HasDefaultValue("CURRENT_TIMESTAMP")
             });
 
             #region 种子数据

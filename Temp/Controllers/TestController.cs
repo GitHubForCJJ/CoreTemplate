@@ -27,11 +27,16 @@ namespace Temp.Controllers
         {
             var item = await unitOfWork.GetRepository<Blog>().GetFirstOrDefaultAsync(predicate: x => x.Id == 1);
             logger.LogInformation(JsonConvert.SerializeObject(item));
-            var list = await unitOfWork.GetRepository<Blog>().GetPagedListAsync(x => (x.Id > 0 && x.Title.Contains("1")));
-            logger.LogInformation(JsonConvert.SerializeObject(list));
+            //var list = await unitOfWork.GetRepository<Blog>().GetPagedListAsync(x => (x.Id > 0 && x.Title.Contains("1")));
+            //logger.LogInformation(JsonConvert.SerializeObject(list));
             //unitOfWork.GetRepository<LoginToken>().ChangeTable("logintoken_202007");
-            //var res = await unitOfWork.GetRepository<LoginToken>().GetFirstOrDefaultAsync(predicate: x => x.KID==1);
-            return list.Items;
+            //unitOfWork.ChangeDatabase("uow");
+            var repository = unitOfWork.GetRepository<LoginToken>();
+            repository.ChangeTable("logintoken_202007");//此组件 第一次调用此方法时要报错
+
+            var res = repository.GetFirstOrDefault(predicate: x => x.KID == 1);
+
+            return new List<Blog>() { item};
         }
     }
 }
